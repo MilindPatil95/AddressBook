@@ -1,5 +1,6 @@
 package com.bridgelab.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bridgelab.model.AddressBook;
@@ -7,7 +8,7 @@ import com.bridgelab.model.Person;
 import com.bridgelab.util.Utility;
 
 public class AddressBookMain 
-{  static List<Person> list;
+{  List<Person> list;
     public static void main(String[] args) 
     {    AddressBookMain addressBookMain=new AddressBookMain();
        int choice;  
@@ -43,9 +44,11 @@ public class AddressBookMain
 	}
    
 	private void printAllEntries()
-	{
+	{  
 		 AddressBook addressBook=new AddressBook();
-	    	addressBook.printListOfAddressBook();
+		 	list=addressBook.readFile();
+		 	addressBook.setList(list);
+	    	addressBook.printListOfAddressBook(list);
 		
 	}
 
@@ -61,6 +64,7 @@ public class AddressBookMain
     		System.out.println("3.		Sort Users by Last Name ");
     		System.out.println("4.		Sort Users by ZipCode");
     		System.out.println("5.		Print List of Users ");
+    		System.out.println("6.		Back to main menu ");
     		System.out.println("Enter your choice");
     		choice=Utility.inputInt();
     	   switch(choice)
@@ -68,24 +72,56 @@ public class AddressBookMain
     	     
 			case 1:System.out.println("Enter n no Users you want to addd");
 			      int n=Utility.inputInt();
+			       list=new ArrayList();
+			      list=addressBook.readFile();
 			      for(int i=0;i<n;i++)
 			      {	  
-				    addressBook.addnewUser();
+				    addressBook.addnewUser(list);
 			      }
-			      list=addressBook.getList();
-			      System.out.println(n+"Users are added");
+			      System.out.println(n+" New Users are added");
 				break;
-			case 2: 
-				   //addressBook.editUser();
+			case 2: list=addressBook.readFile();
+				   if(list!=null)
+				   {   
+					   System.out.println("Enter user mobile number");  
+					   long mobileno=Utility.inputLong();
+					   int i=0;
+					   for(Person obj :list)
+					   {   
+			        	  if(obj.getMobileno()==mobileno)
+			        	  {
+			        		  addressBook.editUser(list,obj,i);
+			        	  }
+			        	  i++;
+			          }
+				   }
+				   else
+				   {
+					   list= addressBook.readFile();
+					   System.out.println("Enter user mobile number");  
+					   long mobileno=Utility.inputLong();
+					   int i=0;
+					   for(Person obj :list)
+					   {
+			        	  if(obj.getMobileno()==mobileno)
+			        	  {
+			        		  addressBook.editUser(list,obj,i);			        	  }
+			        	  i++;
+			          }
+				   }
+				   
 				break;
 			case 3:
-				addressBook.sortByLastName();
+                    list=addressBook.readFile();
+					addressBook.sortByLastName(list);
+					list=addressBook.getList();
 				break;
-			case 4:
-				addressBook.sortByZipcode();
+			case 4: list=addressBook.readFile();
+					addressBook.sortByZipcode(list);
+					list=addressBook.getList();
 				break;
 			case 5:
-				addressBook.printListOfAddressBook();
+				addressBook.printListOfAddressBook(list);
 				break;
 			case 6:
 				   break;

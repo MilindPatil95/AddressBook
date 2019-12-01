@@ -1,6 +1,6 @@
 package com.bridgelab.model;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,10 +11,10 @@ public class AddressBook
 { 
   JsonAddressBookConnection connection=new JsonAddressBookConnection();
 
-  List<Person> list=new ArrayList<Person>();
+  List<Person> list;
 	String filename="Addressbook.json";
-   public void  addnewUser()
-   {  
+   public void  addnewUser(List<Person> list1)
+    {   this.list=list1; 
 	   Person person =new Person();
        System.out.println("Enter Firstname");
        person.setName(Utility.inputString());
@@ -35,9 +35,9 @@ public class AddressBook
 
       
    }
-   public void editUser(int pos)
+   public void editUser(List list,Person obj,int index)
    {    
-	   Person editp=list.get(pos-1);
+	   Person editobj= obj;
 	   System.out.println("Enter your choice");
 	   System.out.println("1 :	LastName");
        System.out.println("2 :	State");
@@ -50,45 +50,55 @@ public class AddressBook
 	   switch(ch)
 	   {
 	   case 1:
-		   	 editp.setLastname(Utility.inputString());
+		   	 editobj.setLastname(Utility.inputString());
 		     break;
 	   case 2: 
-		   	 editp.setState(Utility.inputString());
+		   	 editobj.setState(Utility.inputString());
 		     break;
 	   case 3: 
-		     editp.setCity(Utility.inputString());
+		     editobj.setCity(Utility.inputString());
 		     break;
-	   case  4: editp.setZipcode(Utility.inputString());
+	   case  4: editobj.setZipcode(Utility.inputString());
 		     break;
-	   case   5: editp.setMobileno(Utility.inputLong());
+	   case   5: editobj.setMobileno(Utility.inputLong());
 		    break;
 	   case 6:
-		     editp.setAddress(Utility.inputString());
+		     editobj.setAddress(Utility.inputString());
 	         break;
 	   case 7:
 		       break;
 	       
 	   }
-	   list.set(pos-1,editp);
+	   list.set(index, editobj);
+	  
    }
    
-   public void sortByLastName()
+   public void sortByLastName(List<Person> list)
    {
 	  
-	  list=list.stream().sorted((list1,list2) -> list1.getLastname().compareTo(list2.getLastname())).collect(Collectors.toList());
+	  this.list=list.stream().sorted((list1,list2) -> list1.getLastname().compareTo(list2.getLastname())).collect(Collectors.toList());
 
    }
-   public void sortByZipcode()
+   public void sortByZipcode(List<Person> list)
    {
-	   list=list.stream().sorted((list1,list2) -> list1.getZipcode().compareTo(list2.getZipcode())).collect(Collectors.toList());
+	   this.list=list.stream().sorted((list1,list2) -> list1.getZipcode().compareTo(list2.getZipcode())).collect(Collectors.toList());
 	 
    }
-   public void printListOfAddressBook()
+   public void searchByLastName(List<Person> list,String username)
+   {
+	    this.list=list.stream().filter(e -> e.getLastname().contains(username)).collect(Collectors.toList());
+   }
+   public void searchByZipCode(List<Person> list,String zipcode)
+   {
+	    this.list=list.stream().filter(e -> e.getZipcode().contains(zipcode)).collect(Collectors.toList());
+   }
+   public void printListOfAddressBook(List<Person> list1)
 
    {  int i=1;
-	   for(Person person:list)
+     
+	   for(Person person:list1)
 	   {
-		   System.out.println("USER :"+i);
+		   System.out.println("USER 	:" +i);
 		   System.out.println("Firstname	 :"+person.getName());
 	       System.out.println("LastName		 :"+person.getLastname());
 	   	   System.out.println("State		 :"+person.getState());
@@ -116,10 +126,10 @@ public class AddressBook
 	    
   }  
   
-//  public void setList(List<Person> list1)
-//  {
-//	  List<Person>  list=list1;
-//	    
-//  } 
+ public void setList(List<Person> list1)
+  {
+	  list=list1;
+	    
+  } 
   
 }

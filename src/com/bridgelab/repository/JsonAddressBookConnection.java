@@ -17,7 +17,7 @@ public class JsonAddressBookConnection {
 		try
 		{
 			ObjectMapper mapper = new ObjectMapper();
-		list1=mapper.readValue(new FileInputStream(filename), new TypeReference<List<Person>>() {
+		    list1=mapper.readValue(new FileInputStream(filename), new TypeReference<List<Person>>() {
 			});
 		} catch (Exception e)
 		{
