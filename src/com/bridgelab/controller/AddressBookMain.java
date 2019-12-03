@@ -18,7 +18,8 @@ public class AddressBookMain
     	  System.out.println("2:	Open");
     	  System.out.println("3:	Save");
     	  System.out.println("4:	SaveAs");
-       	  System.out.println("5:	Quit");
+    	  System.out.println("5:	Print All Entries");
+       	  System.out.println("6:	Quit");
        	  System.out.println("Enter your choice");
        	   choice=Utility.inputInt();
        	   switch(choice)
@@ -31,10 +32,10 @@ public class AddressBookMain
        	   case 3:  addressBookMain.save();
        	   		break;
        	   case 4:  addressBookMain.saveAs();
-       	   		break;
-       	   case 5: addressBookMain.quit();
-       	   		break;
-       	   case 6: addressBookMain.printAllEntries();
+       	   		break;      	   
+       	   case 5: addressBookMain.printAllEntries();
+	   		break;
+       	   case 6: addressBookMain.quit();
 	   		break;
        	   default : System.out.println("Enter Proper choice");
        	   			choice=Utility.inputInt();

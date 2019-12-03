@@ -97,7 +97,7 @@ public class AddressBook
    {  int i=1;
      
 	   for(Person person:list1)
-	   {
+	   { System.out.println("===========================================================================");
 		   System.out.println("USER 	:" +i);
 		   System.out.println("Firstname	 :"+person.getName());
 	       System.out.println("LastName		 :"+person.getLastname());
@@ -107,6 +107,7 @@ public class AddressBook
 	       System.out.println("Enter Mobile Number"+person.getMobileno());
 	     
 	       	  i++;
+	       	  
 	   }
    }
 
@@ -129,6 +130,7 @@ public class AddressBook
  public void setList(List<Person> list1)
   {
 	  list=list1;
+	    
 	    
   } 
   
