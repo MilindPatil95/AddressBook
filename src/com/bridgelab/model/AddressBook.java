@@ -14,7 +14,7 @@ public class AddressBook
   List<Person> list;
 	String filename="Addressbook.json";
    public void  addnewUser(List<Person> list1)
-    {   this.list=list1; 
+    {  this.list=list1; 
 	   Person person =new Person();
        System.out.println("Enter Firstname");
        person.setName(Utility.inputString());
@@ -31,8 +31,7 @@ public class AddressBook
        person.setMobileno(Utility.inputLong());
        System.out.println("Enter address");
        person.setAddress(Utility.inputString());       
-       list.add(person);
-
+       list.add(person);     
       
    }
    public void editUser(List list,Person obj,int index)
@@ -84,14 +83,7 @@ public class AddressBook
 	   this.list=list.stream().sorted((list1,list2) -> list1.getZipcode().compareTo(list2.getZipcode())).collect(Collectors.toList());
 	 
    }
-   public void searchByLastName(List<Person> list,String username)
-   {
-	    this.list=list.stream().filter(e -> e.getLastname().contains(username)).collect(Collectors.toList());
-   }
-   public void searchByZipCode(List<Person> list,String zipcode)
-   {
-	    this.list=list.stream().filter(e -> e.getZipcode().contains(zipcode)).collect(Collectors.toList());
-   }
+  
    public void printListOfAddressBook(List<Person> list1)
 
    {  int i=1;
@@ -103,9 +95,9 @@ public class AddressBook
 	       System.out.println("LastName		 :"+person.getLastname());
 	   	   System.out.println("State		 :"+person.getState());
 	       System.out.println("City			 :"+person.getCity());	   
-	       System.out.println("Enter Zipcode :"+person.getZipcode());   
-	       System.out.println("Enter Mobile Number"+person.getMobileno());
-	     
+	       System.out.println("Zipcode		 :"+person.getZipcode());   
+	       System.out.println("Mobile Number :"+person.getMobileno());
+	       System.out.println("Address		 :"+person.getAddress());
 	       	  i++;
 	       	  
 	   }

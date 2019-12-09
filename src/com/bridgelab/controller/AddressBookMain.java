@@ -1,19 +1,24 @@
 package com.bridgelab.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.bridgelab.model.AddressBook;
 import com.bridgelab.model.Person;
 import com.bridgelab.util.Utility;
-
+/*
+ *@purpose: To crate Book having list of Person detail And maintain search ,sort,edit operation 
+ *@author:Milind Patil
+ *@Date:
+ * */
 public class AddressBookMain 
 {  List<Person> list;
     public static void main(String[] args) 
-    {    AddressBookMain addressBookMain=new AddressBookMain();
+    {    AddressBookMain addressBookMain=new AddressBookMain();  //crate address book object
        int choice;  
       do {
-    	  System.out.println("Select options=======================");
+    	  System.out.println("Select options=======================");  
     	  System.out.println("1:	Create Address Book");
     	  System.out.println("2:	Open");
     	  System.out.println("3:	Save");
@@ -25,7 +30,7 @@ public class AddressBookMain
        	   switch(choice)
        	   {
        	  
-       	   case 1:	addressBookMain.createNewAddressBook();
+       	   case 1:	addressBookMain.createNewAddressBook();      
        	   		break;
        	   case 2:	addressBookMain.open();
        	   		break;
@@ -136,7 +141,8 @@ public class AddressBookMain
     }
     private void open()
     {
-    	
+    	 System.out.println("File Name 	:"+"Addressbook");
+    	 System.out.println("Extension	:"+".json");                 
     }
     private void save()
     { 		
